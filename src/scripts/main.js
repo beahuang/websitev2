@@ -1,10 +1,4 @@
-var Hello = React.createClass({displayName: 'Hello',
-    render: function() {
-        return React.createElement("div", null, "Hello ", this.props.name);
-    }
-});
-
-React.render(
-    React.createElement(Hello, {name: "World"}),
-    document.getElementById('container')
-);
+/** @jsx React.DOM */
+var React = require('react');
+var App = require('./views.jsx');
+React.render(<App/>, document.getElementById('container'));

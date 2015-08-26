@@ -1,13 +1,17 @@
 var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
-    rename = require('gulp-rename');
-var autoprefixer = require('gulp-autoprefixer');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var imagemin = require('gulp-imagemin'),
-    cache = require('gulp-cache');
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync');
+    rename = require('gulp-rename'),
+    source = require('vinyl-source-stream'),
+    browserify = require('browserify'),
+    watchify = require("watchify"),
+    reactify = require('reactify'),
+    autoprefixer = require('gulp-autoprefixer'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    imagemin = require('gulp-imagemin'),
+    cache = require('gulp-cache'),
+    sass = require('gulp-sass'),
+    browserSync = require('browser-sync');
 
 gulp.task('browser-sync', function() {
   browserSync({
@@ -41,23 +45,21 @@ gulp.task('styles', function(){
 });
 
 gulp.task('scripts', function(){
-  return gulp.src('src/scripts/**/*.js')
-    .pipe(plumber({
-      errorHandler: function (error) {
-        console.log(error.message);
-        this.emit('end');
-    }}))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dist/scripts/'))
+  var bundle = browserify('src/scripts/main.js')
+  bundle.transform(reactify) // use the reactify transform
+  var stream = bundle.bundle()
+  return stream
+    .pipe(source('main.js'))
     // .pipe(rename({suffix: '.min'}))
     // .pipe(uglify())
-    .pipe(gulp.dest('dist/scripts/'))
+    .pipe(gulp.dest('dist/scripts'))
     .pipe(browserSync.reload({stream:true}))
 });
 
 gulp.task('default', ['browser-sync'], function(){
   gulp.watch("src/styles/**/*.scss", ['styles']);
   gulp.watch("src/scripts/**/*.js", ['scripts']);
+  gulp.watch("src/scripts/**/*.jsx", ['scripts']);
   gulp.watch("*.html", ['bs-reload']);
 });
 
