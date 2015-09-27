@@ -122,19 +122,6 @@ h3 {
     font-size: 2em;
 }
 
-::-webkit-input-placeholder {
-   color: black;
-}
-:-moz-placeholder {
-   color: black;
-}
-::-moz-placeholder {
-   color: black;
-}
-:-ms-input-placeholder {
-   color: black;
-}
-
 /* ==========================================================================
 Helpers
 ========================================================================== */
@@ -211,24 +198,37 @@ nav {
 	.devbtn, .desbtn {
 		width: 150px;
 		height: 150px;
-		border-radius: 50%;
+		@include rotate(45deg);
 		background-color: $darkblue;
+		@include transition(all 0.3s ease-in-out);
 		a {
 			width: 100%;
 			text-transform: uppercase;
+			@include rotate(-45deg);
+			display: block;
+		}
+		&:before {
+			@include rotate(-45deg);
+			margin: 0 57px 0 0;
 		}
 	}
 	.devbtn {
 		margin-left: -75px;
-		padding: 50px 30px 0px 65px;
-		left: 20px;
+		padding: 30px 0px 0px 60px;
+		left: -10px;
+		&:hover {
+			left: 0px;
+		}
 	}
 	.desbtn {
 		margin-right: -75px;
-		padding: 50px 75px 0px 30px;
-		right: 20px;
+		padding: 60px 50px 0px 30px;
+		right: -10px;
 		&:before {
-			margin-left: 15px;
+			margin: 0 57px 0 0;
+		}
+		&:hover {
+			right: 0px;
 		}
 	}
 	@include break($mobile) {
@@ -284,7 +284,7 @@ header {
 	.resume {
 		display: block;
 		text-align: center;
-		padding-bottom: 50px;
+		padding-bottom: 100px;
 	}
 }
 section.social {
@@ -296,6 +296,7 @@ section.social {
 		a:hover {
 			li:before {
 				color: $pink;
+				@include transition(color 0.2s ease-in-out);
 			}
 		}
 		li {
@@ -334,6 +335,15 @@ section.contact-form {
 			border: 2px solid $pink;
 			letter-spacing: 1px;
 			font-weight: 700;
+		}
+
+		input, textarea {
+			@include placeholder-color(black);
+			@include transition(border 0.2s ease-in-out);
+			&:focus {
+				border: 2px solid $darkpink;
+				outline: none;
+			}
 		}
 		button {
 			background-color: transparent;
