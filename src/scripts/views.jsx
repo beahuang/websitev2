@@ -3,15 +3,20 @@ var React = require('react');
 var App = React.createClass({
     showLeft: function() {
         this.refs.dev.show();
+        this.refs.main.slideRight();
     },
     showRight: function() {
         this.refs.des.show();
+        this.refs.main.slideLeft();
+    },
+    reset: function() {
+    	this.refs.main.reset();
     },
     render: function() {
         return (
             <div>
                 <Nav showLeft={this.showLeft} showRight={this.showRight}></Nav>
-                <MainPanel></MainPanel>
+                <MainPanel ref="main" onClick="{this.reset}"></MainPanel>
                 <Panel ref="dev" alignment="left" id="devPanel">
                     <Project hash="first-page">First Page</Project>
                     <Project hash="second-page">Second Page</Project>
@@ -76,9 +81,23 @@ var Project = React.createClass({
 });
 
 var MainPanel = React.createClass({
+	getInitialState: function() {
+		return {
+			getMovement: ""
+		}
+	},
+	slideLeft: function() {
+		this.setState({getMovement:"slideLeft"})
+	},
+	slideRight: function(){
+		this.setState({getMovement:"slideRight"})
+	},
+	reset: function() {
+		this.setState({getMovement:""})
+	},
     render: function(){
         return (
-            <section id="mainPanel">
+            <section id="mainPanel" className={this.state.getMovement}>
                 <Header></Header>
                 <Social></Social>
                 <Form></Form>

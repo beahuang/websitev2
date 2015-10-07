@@ -193,6 +193,7 @@ nav {
 		text-align: center;
 		color: white;
 		cursor: pointer;
+		z-index: 2;
 		&:before {
 			display: block;
 			font-size: 2em;
@@ -363,23 +364,37 @@ section.contact-form {
 		}
 	}
 }
-#mainPanel.slide {
-	position: fixed;
-	transform: translate(-1056px, 0px);
-}
-#desPanel, #devPanel {
-	zoom: 1;
-	padding-bottom: 60px;
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	right: 0;
+#mainPanel{
+	overflow-x: hidden;
+	position: relative;
 	left: 0;
-	-webkit-transform: translate(-100%, 0);
-	-ms-transform: translate(-100%, 0);
-	-moz-transform: translate(-100%, 0);
-	-o-transform: translate(-100%, 0);
-	transform: translate(-100%, 0);
+	@include transition(all 0.2s ease-in-out);
+}
+#mainPanel.slideLeft {
+	left: -240px;
+}
+#mainPanel.slideRight {
+	left: 240px;
+}
+.desPanel, .devPanel {
+	width: 240px;
+	height: 100%;
+	top: 0;
+	z-index: 1000;
+	position: fixed;
+	background-color: $darkpink;
+	&.left {
+		left: -240px;
+		&.visible {
+			left: 0px;
+		}
+	}
+	&.right {
+		right: -240px;
+		&.visible {
+			right: 0px;
+		}
+	}
 }
 /* ==========================================================================
 Develop
@@ -390,50 +405,3 @@ Develop
 /* ==========================================================================
 Design
 ========================================================================== */
-#desPanel {
-
-}
-
-.panel {
-    display:block;
-    >div {
-        position:absolute;
-        z-index:2;
-        top:0;
-        width:250px;
-        height:100%;
-        transition: transform ease 250ms;
-
-        &.left {
-            background:#273D7A;
-            left:-250px;
-        }
-
-        &.visible.left {
-        	transform:translate3d(250px, 0, 0);
-        }
-
-        &.right {
-            background:#6B1919;
-            right:-250px;
-        }
-
-        &.visible.right {
-            transform:translate3d(-250px, 0, 0);
-        }
-
-        >.project {
-            float:left;
-            width:100%;
-            margin:0;
-            padding:10px 15px;
-            border-bottom:solid 1px #555;
-            cursor:pointer;
-            color:#B0B0B0;
-
-            &:hover {
-                color:#F0F0F0;
-            }
-        }
-    }
-}
