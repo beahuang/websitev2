@@ -137,6 +137,10 @@ ul {
 	list-style: none;
 }
 
+.hidden {
+	display: none !important;
+}
+
 .btn {
 	cursor: pointer;
 	padding: 15px 80px;
@@ -209,23 +213,25 @@ nav {
 		}
 		&:before {
 			@include rotate(-45deg);
-			margin: 0 57px 0 0;
 		}
 	}
 	.devbtn {
 		margin-left: -75px;
-		padding: 30px 0px 0px 60px;
+		padding: 16px 0px 0px 75px;
 		left: -10px;
+		&:before {
+			margin: 10px 50px -10px 3px;
+		}
 		&:hover {
 			left: 0px;
 		}
 	}
 	.desbtn {
 		margin-right: -75px;
-		padding: 60px 50px 0px 30px;
+		padding: 75px 50px 0px 10px;
 		right: -10px;
 		&:before {
-			margin: 0 57px 0 0;
+			margin: 0 35px 0 0;
 		}
 		&:hover {
 			right: 0px;
@@ -321,12 +327,15 @@ section.contact-form {
 		}
 		input {
 			display: inline-block;
-			width: 49.7%;
+			width: 49%;
 			padding: 15px;
 			margin-bottom: 10px;
 			border: 2px solid $pink;
 			letter-spacing: 1px;
 			font-weight: 700;
+			&:first-of-type {
+				margin-right: 1%;
+			}
 		}
 		textarea {
 			width: 99.9%;
@@ -335,6 +344,7 @@ section.contact-form {
 			border: 2px solid $pink;
 			letter-spacing: 1px;
 			font-weight: 700;
+			min-height: 90px;
 		}
 
 		input, textarea {
@@ -382,4 +392,48 @@ Design
 ========================================================================== */
 #desPanel {
 
+}
+
+.panel {
+    display:block;
+    >div {
+        position:absolute;
+        z-index:2;
+        top:0;
+        width:250px;
+        height:100%;
+        transition: transform ease 250ms;
+
+        &.left {
+            background:#273D7A;
+            left:-250px;
+        }
+
+        &.visible.left {
+        	transform:translate3d(250px, 0, 0);
+        }
+
+        &.right {
+            background:#6B1919;
+            right:-250px;
+        }
+
+        &.visible.right {
+            transform:translate3d(-250px, 0, 0);
+        }
+
+        >.project {
+            float:left;
+            width:100%;
+            margin:0;
+            padding:10px 15px;
+            border-bottom:solid 1px #555;
+            cursor:pointer;
+            color:#B0B0B0;
+
+            &:hover {
+                color:#F0F0F0;
+            }
+        }
+    }
 }

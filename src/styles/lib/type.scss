@@ -26,7 +26,9 @@
 }
 
 [class^="icon-"]:before,
-[class*=" icon-"]:before {
+[class*=" icon-"]:before,
+.devbtn:before,
+.desbtn:before {
   font-family: "website" !important;
   font-style: normal !important;
   font-weight: normal !important;
@@ -38,10 +40,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-code:before {
+.icon-code:before,
+.devbtn:before {
   content: "a";
 }
-.icon-design:before {
+.icon-design:before,
+.desbtn:before {
   content: "b";
 }
 .icon-linkedin:before {
