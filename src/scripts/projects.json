@@ -1,0 +1,96 @@
+{
+  "desProjects" : {
+    "3d-model" : {
+      "name" : "3d Modeling",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "Autodesk Maya, Photoshop"
+    },
+    "flickr" : {
+      "name" : "Flickr Photography",
+      "description" : "this is a description",
+      "link" : "https://www.flickr.com/gp/135329529@N03/LN0Z0t",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "Photoshop"
+    },
+    "art" : {
+      "name" : "Art Projects",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "Acrylic Paint, Sharpie, Photoshop, etc"
+    }
+  },
+  "devProjects" : {
+    "webv2" : {
+      "name" : "New Portfolio",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "ReactJS, HTML, JS, SASS, Firebase"
+    },
+    "rotel" : {
+      "name" : "Rotel North America",
+      "description" : "This hasn't been pushed live yet so I can't share anything yet. Stay tuned!",
+      "image" : {
+        "image1" : "img.png"
+      }
+    },
+    "deepis" : {
+      "name" : "DeepIS",
+      "description" : "this is a description",
+      "link" : "http://deep.is",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "Drupal, HTML, JS, CSS, PHP"
+    },
+    "ruota" : {
+      "name" : "Ruota Consulting",
+      "description" : "this is a description",
+      "link" : "http://ruota.consulting/",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "Drupal, HTML, JS, CSS, PHP"
+    },
+    "videogames" : {
+      "name" : "History of Videogames",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "HTML, JS, SASS"
+    },
+    "webv1" : {
+      "name" : "Old Portfolio",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "HTML, JS, CSS"
+    },
+    "carpenoctem" : {
+      "name" : "Carpenoctem",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "HTML, JS, CSS, PHP"
+    },
+    "instafilter" : {
+      "name" : "Instafilter",
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "img.png"
+      },
+      "technology" : "HTML, JS, CSS"
+    }
+  }
+}
