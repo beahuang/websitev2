@@ -22,12 +22,18 @@ var App = React.createClass({
 	},
 	reset: function() {
 		this.refs.main.reset();
+		this.refs.dev.hide();
+		this.refs.des.hide();
 	},
 	render: function() {
 		return (
 			<div>
-				<Nav showLeft={this.showLeft} showRight={this.showRight}></Nav>
-				<MainPanel ref="main" onClick="{this.reset}"></MainPanel>
+				<Nav showLeft={this.showLeft} showRight={this.showRight} reset={this.reset}></Nav>
+				<MainPanel ref="main" onClick="{this.reset}">
+					<Header></Header>
+					<Social></Social>
+					<Form></Form>
+				</MainPanel>
 				<Panel ref="dev" alignment="left" id="devPanel">
 					<Project projects={this.state.devProjects}></Project>
 				</Panel>
@@ -40,12 +46,36 @@ var App = React.createClass({
 });
 
 var Nav = React.createClass({
+	getInitialState: function() {
+		return {
+			direction: ""
+		};
+	},
+	devOpen: function() {
+		if(this.state.direction == "right") {
+			this.setState({direction: ""});
+			this.props.reset();
+		} else {
+			this.setState({direction: "right"});
+			this.props.showLeft();
+		}
+	},
+	desOpen: function() {
+		if(this.state.direction == "left") {
+			this.setState({direction: ""});
+			this.props.reset();
+		} else {
+			this.setState({direction: "left"});
+			this.props.showRight();
+		}
+
+	},
 	render: function() {
 		return (
 			<nav>
 				<ul>
-					<li className="devbtn" onClick={this.props.showLeft}><a>Code</a></li>
-					<li className="desbtn" onClick={this.props.showRight}><a>Design</a></li>
+					<li className={(this.state.direction) + " devbtn"} onClick={this.devOpen}><a>Code</a></li>
+					<li className={(this.state.direction) + " desbtn"} onClick={this.desOpen}><a>Design</a></li>
 				</ul>
 			</nav>
 		);
@@ -70,7 +100,7 @@ var Panel = React.createClass({
 	render: function() {
 		return (
 			<div className="panel">
-				<div className={(this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}><button className="close" onClick={this.hide}></button>{this.props.children}</div>
+				<div className={(this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}>{this.props.children}</div>
 			</div>
 		);
 	}
@@ -80,7 +110,13 @@ var Project = React.createClass({
 	render: function() {
 	  var createProject = function(project, i) {
 		return (
-		  <li key={i}>{project.name}</li>
+			<div className="project" key={i}>
+				<p>{project.name}</p>
+				<p>{project.image.image1}</p>
+				<p>{project.description}</p>
+				<p>{project.technology}</p>
+				<p>{project.link}</p>
+			</div>
 		);
 	  };
 	  return <ul>{this.props.projects.map(createProject)}</ul>;
@@ -105,9 +141,7 @@ var MainPanel = React.createClass({
 	render: function(){
 		return (
 			<section id="mainPanel" className={this.state.getMovement}>
-				<Header></Header>
-				<Social></Social>
-				<Form></Form>
+				{this.props.children}
 			</section>
 		);
 	}

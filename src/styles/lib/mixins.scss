@@ -176,6 +176,10 @@
   transition: $transition;
 }
 
+@mixin bouncetransition {
+  @include transition(all 0.4s cubic-bezier(.59,.27,0,1.09));
+}
+
 /*
 @name: vertical-align
 @description: vertically centers the object.

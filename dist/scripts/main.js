@@ -28,12 +28,18 @@ var App = React.createClass({displayName: "App",
 	},
 	reset: function() {
 		this.refs.main.reset();
+		this.refs.dev.hide();
+		this.refs.des.hide();
 	},
 	render: function() {
 		return (
 			React.createElement("div", null, 
-				React.createElement(Nav, {showLeft: this.showLeft, showRight: this.showRight}), 
-				React.createElement(MainPanel, {ref: "main", onClick: "{this.reset}"}), 
+				React.createElement(Nav, {showLeft: this.showLeft, showRight: this.showRight, reset: this.reset}), 
+				React.createElement(MainPanel, {ref: "main", onClick: "{this.reset}"}, 
+					React.createElement(Header, null), 
+					React.createElement(Social, null), 
+					React.createElement(Form, null)
+				), 
 				React.createElement(Panel, {ref: "dev", alignment: "left", id: "devPanel"}, 
 					React.createElement(Project, {projects: this.state.devProjects})
 				), 
@@ -46,12 +52,36 @@ var App = React.createClass({displayName: "App",
 });
 
 var Nav = React.createClass({displayName: "Nav",
+	getInitialState: function() {
+		return {
+			direction: ""
+		};
+	},
+	devOpen: function() {
+		if(this.state.direction == "right") {
+			this.setState({direction: ""});
+			this.props.reset();
+		} else {
+			this.setState({direction: "right"});
+			this.props.showLeft();
+		}
+	},
+	desOpen: function() {
+		if(this.state.direction == "left") {
+			this.setState({direction: ""});
+			this.props.reset();
+		} else {
+			this.setState({direction: "left"});
+			this.props.showRight();
+		}
+
+	},
 	render: function() {
 		return (
 			React.createElement("nav", null, 
 				React.createElement("ul", null, 
-					React.createElement("li", {className: "devbtn", onClick: this.props.showLeft}, React.createElement("a", null, "Code")), 
-					React.createElement("li", {className: "desbtn", onClick: this.props.showRight}, React.createElement("a", null, "Design"))
+					React.createElement("li", {className: (this.state.direction) + " devbtn", onClick: this.devOpen}, React.createElement("a", null, "Code")), 
+					React.createElement("li", {className: (this.state.direction) + " desbtn", onClick: this.desOpen}, React.createElement("a", null, "Design"))
 				)
 			)
 		);
@@ -76,7 +106,7 @@ var Panel = React.createClass({displayName: "Panel",
 	render: function() {
 		return (
 			React.createElement("div", {className: "panel"}, 
-				React.createElement("div", {className: (this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}, React.createElement("button", {className: "close", onClick: this.hide}), this.props.children)
+				React.createElement("div", {className: (this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}, this.props.children)
 			)
 		);
 	}
@@ -86,7 +116,13 @@ var Project = React.createClass({displayName: "Project",
 	render: function() {
 	  var createProject = function(project, i) {
 		return (
-		  React.createElement("li", {key: i}, project.name)
+			React.createElement("div", {className: "project", key: i}, 
+				React.createElement("p", null, project.name), 
+				React.createElement("p", null, project.image.image1), 
+				React.createElement("p", null, project.description), 
+				React.createElement("p", null, project.technology), 
+				React.createElement("p", null, project.link)
+			)
 		);
 	  };
 	  return React.createElement("ul", null, this.props.projects.map(createProject));
@@ -111,9 +147,7 @@ var MainPanel = React.createClass({displayName: "MainPanel",
 	render: function(){
 		return (
 			React.createElement("section", {id: "mainPanel", className: this.state.getMovement}, 
-				React.createElement(Header, null), 
-				React.createElement(Social, null), 
-				React.createElement(Form, null)
+				this.props.children
 			)
 		);
 	}

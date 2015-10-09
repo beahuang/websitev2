@@ -16,6 +16,9 @@ $darkblue: #36B4B2;
 $mobile: 700px;
 $tablet: 960px;
 
+// PanelSize
+$panelSize: 70vw;
+
 // Import Sass Files
 @import "lib/type";
 @import "lib/mixins";
@@ -42,6 +45,7 @@ html {
 body {
 	margin: 0;
 	color: white;
+	overflow-x: hidden;
 }
 
 /*
@@ -205,7 +209,7 @@ nav {
 		height: 150px;
 		@include rotate(45deg);
 		background-color: $darkblue;
-		@include transition(all 0.3s ease-in-out);
+		@include bouncetransition;
 		a {
 			width: 100%;
 			text-transform: uppercase;
@@ -224,7 +228,15 @@ nav {
 			margin: 10px 50px -10px 3px;
 		}
 		&:hover {
-			left: 0px;
+			// left: 0px;
+		}
+		&.left {
+			left: -$panelSize;
+		}
+		&.right {
+			left: $panelSize;
+			&:hover {
+			}
 		}
 	}
 	.desbtn {
@@ -235,7 +247,15 @@ nav {
 			margin: 0 35px 0 0;
 		}
 		&:hover {
-			right: 0px;
+			// right: 0px;
+		}
+		&.left {
+			right: $panelSize;
+			&:hover {
+			}
+		}
+		&.right {
+			right: -$panelSize;
 		}
 	}
 	@include break($mobile) {
@@ -303,7 +323,7 @@ section.social {
 		a:hover {
 			li:before {
 				color: $pink;
-				@include transition(color 0.2s ease-in-out);
+				@include transition(all 0.2s ease-in-out);
 			}
 		}
 		li {
@@ -350,7 +370,7 @@ section.contact-form {
 
 		input, textarea {
 			@include placeholder-color(black);
-			@include transition(border 0.2s ease-in-out);
+			@include transition(all 0.2s ease-in-out);
 			&:focus {
 				border: 2px solid $darkpink;
 				outline: none;
@@ -368,33 +388,46 @@ section.contact-form {
 	overflow-x: hidden;
 	position: relative;
 	left: 0;
-	@include transition(all 0.2s ease-in-out);
+	@include bouncetransition;
 }
 #mainPanel.slideLeft {
-	left: -240px;
+	left: -$panelSize;
 }
 #mainPanel.slideRight {
-	left: 240px;
+	left: $panelSize;
 }
 .desPanel, .devPanel {
-	width: 240px;
+	width: $panelSize;
 	height: 100%;
 	top: 0;
 	z-index: 1000;
 	position: fixed;
 	background-color: $darkpink;
+	@include bouncetransition;
 	&.left {
-		left: -240px;
+		left: -$panelSize;
 		&.visible {
 			left: 0px;
+			overflow-y: scroll;
 		}
 	}
 	&.right {
-		right: -240px;
+		right: -$panelSize;
 		&.visible {
 			right: 0px;
+			overflow-y: scroll;
 		}
 	}
+}
+
+.project {
+	max-width: 50%;
+	margin: 20px auto;
+	text-align: center;
+	background-color: white;
+	color: black;
+	padding: 20px;
+
 }
 /* ==========================================================================
 Develop
