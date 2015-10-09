@@ -177,7 +177,7 @@
 }
 
 @mixin bouncetransition {
-  @include transition(all 0.4s cubic-bezier(.59,.27,0,1.09));
+  @include transition(all 0.3s cubic-bezier(.59,.27,0,1.09));
 }
 
 /*
@@ -203,4 +203,13 @@
   right: $right;
   bottom: $bottom;
   left: $left;
+}
+
+/*
+@name: webkit-flickr
+@description: prevents webkit text flickr
+*/
+@mixin webkit-flickr {
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
 }

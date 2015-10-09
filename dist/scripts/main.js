@@ -26,17 +26,23 @@ var App = React.createClass({displayName: "App",
 		this.refs.des.show();
 		this.refs.main.slideLeft();
 	},
+	showTop: function() {
+		this.refs.about.show();
+		this.refs.main.slideDown();
+	},
 	reset: function() {
 		this.refs.main.reset();
 		this.refs.dev.hide();
 		this.refs.des.hide();
+		this.refs.about.hide();
 	},
 	render: function() {
 		return (
 			React.createElement("div", null, 
 				React.createElement(Nav, {showLeft: this.showLeft, showRight: this.showRight, reset: this.reset}), 
+				React.createElement(Panel, {ref: "about", alignment: "top", id: "aboutPanel"}), 
 				React.createElement(MainPanel, {ref: "main", onClick: "{this.reset}"}, 
-					React.createElement(Header, null), 
+					React.createElement(Header, {showTop: this.showTop, reset: this.reset}), 
 					React.createElement(Social, null), 
 					React.createElement(Form, null)
 				), 
@@ -74,7 +80,6 @@ var Nav = React.createClass({displayName: "Nav",
 			this.setState({direction: "left"});
 			this.props.showRight();
 		}
-
 	},
 	render: function() {
 		return (
@@ -97,10 +102,12 @@ var Panel = React.createClass({displayName: "Panel",
 
 	show: function() {
 		this.setState({ visible: true });
+		document.body.className = "panel-open";
 	},
 
 	hide: function() {
 		this.setState({ visible: false });
+		document.body.className = "";
 	},
 
 	render: function() {
@@ -141,6 +148,9 @@ var MainPanel = React.createClass({displayName: "MainPanel",
 	slideRight: function(){
 		this.setState({getMovement:"slideRight"})
 	},
+	slideDown: function(){
+		this.setState({getMovement:"slideDown"})
+	},
 	reset: function() {
 		this.setState({getMovement:""})
 	},
@@ -153,13 +163,27 @@ var MainPanel = React.createClass({displayName: "MainPanel",
 	}
 });
 var Header = React.createClass({displayName: "Header",
+	getInitialState: function() {
+		return {
+			aboutVisible: false
+		};
+	},
+	aboutOpen: function() {
+		if(this.state.aboutVisible) {
+			this.setState({aboutVisible: false});
+			this.props.reset();
+		} else {
+			this.setState({aboutVisible: true});
+			this.props.showTop();
+		}
+	},
 	render: function(){
 		return (
 			React.createElement("header", null, 
 				React.createElement("h1", null, "Beatrice Huang"), 
 				React.createElement("div", {className: "logoContainer"}, 
 					React.createElement("h3", null, "Developer"), 
-					React.createElement("span", {className: "logo"}, React.createElement("img", {src: "dist/images/me.png"})), 
+					React.createElement("span", {className: (this.state.aboutVisible ? "about-visible " : "") + "logo", onClick: this.aboutOpen}, React.createElement("img", {src: "dist/images/me.png"})), 
 					React.createElement("h3", null, "Designer")
 				), 
 				React.createElement("span", {className: "resume"}, 

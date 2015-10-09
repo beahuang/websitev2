@@ -5,9 +5,10 @@ $container: 960px;
 // Colors
 $pink: #F45657;
 $darkpink: #CE0506;
-$blue: #3FDDE6;
-$midblue: #30BAC1;
-$darkblue: #36B4B2;
+$blue: #45CEF3;
+$midblue: #4C94D4;
+$darkblue: #207FE1;
+$darkestblue: #1A5B9E;
 
 // Fonts
 
@@ -18,6 +19,7 @@ $tablet: 960px;
 
 // PanelSize
 $panelSize: 70vw;
+$aboutPanel: 70vh;
 
 // Import Sass Files
 @import "lib/type";
@@ -46,6 +48,9 @@ body {
 	margin: 0;
 	color: white;
 	overflow-x: hidden;
+	&.panel-open {
+		overflow: hidden;
+	}
 }
 
 /*
@@ -95,6 +100,24 @@ fieldset {
 
 textarea {
     resize: vertical;
+}
+
+/*
+ * Custom Scrollbar for webkit (Chrome and Safari)
+ */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 0px;
+    background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 0px;
+    background-color: $darkestblue;
 }
 
 /* ==========================================================================
@@ -152,12 +175,11 @@ ul {
 	letter-spacing: 1px;
 	font-weight: 700;
 	position: relative;
-	-webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
-	transition: all 0.3s;
+	@include transition(all 0.3s linear);
 	border: 3px solid #fff;
 	overflow: hidden;
 	z-index: 1;
+	@include webkit-flickr;
 	&:after {
 		width: 101%;
 		height: 0;
@@ -165,16 +187,15 @@ ul {
 		left: 50%;
 		background: #fff;
 		opacity: 0;
-		-webkit-transform: translateX(-50%) translateY(-50%);
-		-moz-transform: translateX(-50%) translateY(-50%);
-		-ms-transform: translateX(-50%) translateY(-50%);
 		transform: translateX(-50%) translateY(-50%);
 		content: '';
 		position: absolute;
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
 		transition: all 0.3s;
+		@include transition(all 0.3s linear);
 		z-index: -1;
+		@include webkit-flickr;
 	}
 	&:hover {
 		color: $midblue;
@@ -210,6 +231,7 @@ nav {
 		@include rotate(45deg);
 		background-color: $darkblue;
 		@include bouncetransition;
+		@include webkit-flickr;
 		a {
 			width: 100%;
 			text-transform: uppercase;
@@ -218,6 +240,7 @@ nav {
 		}
 		&:before {
 			@include rotate(-45deg);
+			@include webkit-flickr;
 		}
 	}
 	.devbtn {
@@ -272,18 +295,92 @@ nav {
 }
 
 /* ==========================================================================
-Home
+Panels
+========================================================================== */
+
+#mainPanel{
+	overflow-x: hidden;
+	position: relative;
+	left: 0;
+	top: 0;
+	background-color: $blue;
+	@include bouncetransition;
+	&.slideLeft {
+		left: -$panelSize;
+	}
+	&.slideRight{
+		left: $panelSize;
+	}
+	&.slideDown{
+		top: $aboutPanel;
+		header {
+			h1,h3 {
+				transform: translateY(20vh);
+				@include transition(transform 0.1s linear);
+			}
+		}
+	}
+}
+
+.desPanel, .devPanel, .aboutPanel {
+	width: $panelSize;
+	height: 100%;
+	top: 0;
+	z-index: 1000;
+	position: fixed;
+	background-color: $pink;
+	@include bouncetransition;
+	&.left {
+		left: -$panelSize;
+		&.visible {
+			left: 0px;
+			overflow-y: scroll;
+		}
+	}
+	&.right {
+		right: -$panelSize;
+		&.visible {
+			right: 0px;
+			overflow-y: scroll;
+		}
+	}
+	&.top {
+		height: $aboutPanel;
+		width: 100%;
+		top: -$aboutPanel;
+		&.visible {
+			top: 0;
+		}
+	}
+}
+
+/* ==========================================================================
+Projects
+========================================================================== */
+.project {
+	max-width: 50%;
+	margin: 20px auto;
+	text-align: center;
+	background-color: white;
+	color: black;
+	padding: 20px;
+
+}
+
+/* ==========================================================================
+Main Panel
 ========================================================================== */
 header {
-	background-color: $blue;
+	margin: 0 auto;
+	max-width: $tablet;
 	h1 {
 		text-align: center;
 		text-transform: uppercase;
 		padding: 100px 60px 70px;
 	}
 	.logoContainer {
+		max-width: $mobile;
 		margin: 0 auto;
-		max-width: 600px;
 		padding-bottom: 50px;
 		h3, span {
 			display: inline-block;
@@ -299,12 +396,25 @@ header {
 			vertical-align: middle;
 			padding: 20px;
 			border-radius: 50%;
-			margin: 2%;
+			margin: 4%;
 			background-color: $pink;
 			border: 10px double $darkpink;
+			cursor: pointer;
+			@include transition(all 0.1s linear);
 			img {
 				width: 80%;
 				margin: 0 auto;
+				@include transition(all 0.2s ease-in-out);
+				&:hover {
+					transform: scale(1.1);
+					@include webkit-flickr;
+				}
+			}
+			&.about-visible {
+				transform: translateY(100vh - $aboutPanel);
+				position: fixed;
+				z-index: 1001;
+				max-width: 294px;
 			}
 		}
 	}
@@ -384,57 +494,3 @@ section.contact-form {
 		}
 	}
 }
-#mainPanel{
-	overflow-x: hidden;
-	position: relative;
-	left: 0;
-	@include bouncetransition;
-}
-#mainPanel.slideLeft {
-	left: -$panelSize;
-}
-#mainPanel.slideRight {
-	left: $panelSize;
-}
-.desPanel, .devPanel {
-	width: $panelSize;
-	height: 100%;
-	top: 0;
-	z-index: 1000;
-	position: fixed;
-	background-color: $darkpink;
-	@include bouncetransition;
-	&.left {
-		left: -$panelSize;
-		&.visible {
-			left: 0px;
-			overflow-y: scroll;
-		}
-	}
-	&.right {
-		right: -$panelSize;
-		&.visible {
-			right: 0px;
-			overflow-y: scroll;
-		}
-	}
-}
-
-.project {
-	max-width: 50%;
-	margin: 20px auto;
-	text-align: center;
-	background-color: white;
-	color: black;
-	padding: 20px;
-
-}
-/* ==========================================================================
-Develop
-========================================================================== */
-#devPanel {
-
-}
-/* ==========================================================================
-Design
-========================================================================== */

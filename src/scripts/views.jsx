@@ -20,17 +20,23 @@ var App = React.createClass({
 		this.refs.des.show();
 		this.refs.main.slideLeft();
 	},
+	showTop: function() {
+		this.refs.about.show();
+		this.refs.main.slideDown();
+	},
 	reset: function() {
 		this.refs.main.reset();
 		this.refs.dev.hide();
 		this.refs.des.hide();
+		this.refs.about.hide();
 	},
 	render: function() {
 		return (
 			<div>
 				<Nav showLeft={this.showLeft} showRight={this.showRight} reset={this.reset}></Nav>
+				<Panel ref="about" alignment="top" id="aboutPanel"></Panel>
 				<MainPanel ref="main" onClick="{this.reset}">
-					<Header></Header>
+					<Header showTop={this.showTop} reset={this.reset}></Header>
 					<Social></Social>
 					<Form></Form>
 				</MainPanel>
@@ -68,7 +74,6 @@ var Nav = React.createClass({
 			this.setState({direction: "left"});
 			this.props.showRight();
 		}
-
 	},
 	render: function() {
 		return (
@@ -91,10 +96,12 @@ var Panel = React.createClass({
 
 	show: function() {
 		this.setState({ visible: true });
+		document.body.className = "panel-open";
 	},
 
 	hide: function() {
 		this.setState({ visible: false });
+		document.body.className = "";
 	},
 
 	render: function() {
@@ -135,6 +142,9 @@ var MainPanel = React.createClass({
 	slideRight: function(){
 		this.setState({getMovement:"slideRight"})
 	},
+	slideDown: function(){
+		this.setState({getMovement:"slideDown"})
+	},
 	reset: function() {
 		this.setState({getMovement:""})
 	},
@@ -147,13 +157,27 @@ var MainPanel = React.createClass({
 	}
 });
 var Header = React.createClass({
+	getInitialState: function() {
+		return {
+			aboutVisible: false
+		};
+	},
+	aboutOpen: function() {
+		if(this.state.aboutVisible) {
+			this.setState({aboutVisible: false});
+			this.props.reset();
+		} else {
+			this.setState({aboutVisible: true});
+			this.props.showTop();
+		}
+	},
 	render: function(){
 		return (
 			<header>
 				<h1>Beatrice Huang</h1>
 				<div className="logoContainer">
 					<h3>Developer</h3>
-					<span className="logo"><img src="dist/images/me.png"/></span>
+					<span className={(this.state.aboutVisible ? "about-visible " : "") + "logo"} onClick={this.aboutOpen}><img src="dist/images/me.png"/></span>
 					<h3>Designer</h3>
 				</div>
 				<span className="resume">
