@@ -1,14 +1,20 @@
+// Import Sass Files
+@import "lib/type";
+@import "lib/mixins";
+
 // Structure
 $wrap: 1150px;
 $container: 960px;
 
 // Colors
 $pink: #F45657;
-$darkpink: #CE0506;
+$midpink : #C64A4A;
+$darkpink: #CE001E;
 $blue: #45CEF3;
 $midblue: #4C94D4;
 $darkblue: #207FE1;
 $darkestblue: #1A5B9E;
+$gray : #455466;
 
 // Fonts
 
@@ -19,11 +25,11 @@ $tablet: 960px;
 
 // PanelSize
 $panelSize: 70vw;
-$aboutPanel: 70vh;
+$aboutPanel: 80vh;
 
-// Import Sass Files
-@import "lib/type";
-@import "lib/mixins";
+@include break($mobile) {
+	$panelSize: 80vw;
+}
 
 /* ==========================================================================
    Base
@@ -50,6 +56,7 @@ body {
 	overflow-x: hidden;
 	&.panel-open {
 		overflow: hidden;
+		top: 0;
 	}
 }
 
@@ -110,14 +117,14 @@ textarea {
 }
 
 ::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	-webkit-box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.5);
     border-radius: 0px;
     background-color: white;
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 0px;
-    background-color: $darkestblue;
+    background-color: $gray;
 }
 
 /* ==========================================================================
@@ -130,7 +137,8 @@ a {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
     font-weight: normal;
     margin: 0;
 }
@@ -149,6 +157,10 @@ h3 {
     font-size: 2em;
 }
 
+h4 {
+	font-size: 1.7em;
+}
+
 /* ==========================================================================
 Helpers
 ========================================================================== */
@@ -156,6 +168,7 @@ Helpers
 img {
 	display: block;
 	max-width: 100%;
+	margin: 0 auto;
 }
 
 ul {
@@ -169,18 +182,22 @@ ul {
 }
 
 .btn {
-	cursor: pointer;
+	display: block;
+	margin: 0 auto;
 	padding: 15px 80px;
+	max-width: 250px;
+	overflow: hidden;
+	z-index: 1;
+	cursor: pointer;
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	font-weight: 700;
 	position: relative;
-	@include transition(all 0.3s linear);
 	border: 3px solid #fff;
-	overflow: hidden;
-	z-index: 1;
+	@include transition(all 0.2s linear);
 	@include webkit-flickr;
 	&:after {
+		content: '';
 		width: 101%;
 		height: 0;
 		top: 50%;
@@ -188,13 +205,9 @@ ul {
 		background: #fff;
 		opacity: 0;
 		transform: translateX(-50%) translateY(-50%);
-		content: '';
 		position: absolute;
-		-webkit-transition: all 0.3s;
-		-moz-transition: all 0.3s;
-		transition: all 0.3s;
-		@include transition(all 0.3s linear);
 		z-index: -1;
+		@include transition(all 0.2s linear);
 		@include webkit-flickr;
 	}
 	&:hover {
@@ -203,6 +216,9 @@ ul {
 			height: 75%;
 			opacity: 1;
 		}
+	}
+	@include break($tablet) {
+		padding: 15px 20px;
 	}
 }
 
@@ -281,15 +297,34 @@ nav {
 			right: -$panelSize;
 		}
 	}
+
+	// MOBILE STYLES
 	@include break($mobile) {
-		li {
-			top: 5px;
+		li.devbtn, li.desbtn {
+			top: 10px;
+			padding: 0;
+			margin: 0;
+			background-color: transparent;
+			transform: none;
+			width: inherit;
+			&:before, a {
+				transform: none;
+			}
+			&:before {
+				margin: 0;
+			}
 		}
 		.devbtn {
-			left: 5px;
+			left: 10px;
+			&.right {
+				left: $panelSize + 5vw;
+			}
 		}
 		.desbtn {
-			right: 5px;
+			right: 10px;
+			&.left {
+				right: $panelSize + 5vw;
+			}
 		}
 	}
 }
@@ -303,7 +338,8 @@ Panels
 	position: relative;
 	left: 0;
 	top: 0;
-	background-color: $blue;
+	background: url("../images/blue-bg.jpg");
+	background-size: 100px 80px;
 	@include bouncetransition;
 	&.slideLeft {
 		left: -$panelSize;
@@ -328,13 +364,15 @@ Panels
 	top: 0;
 	z-index: 1000;
 	position: fixed;
-	background-color: $pink;
+	background: url("../images/pink-bg.jpg");
+	background-size: 100px 80px;
 	@include bouncetransition;
 	&.left {
 		left: -$panelSize;
 		&.visible {
 			left: 0px;
 			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 	}
 	&.right {
@@ -342,6 +380,7 @@ Panels
 		&.visible {
 			right: 0px;
 			overflow-y: scroll;
+			overflow-x: hidden;
 		}
 	}
 	&.top {
@@ -352,6 +391,11 @@ Panels
 			top: 0;
 		}
 	}
+	h2.title {
+		text-align: center;
+		text-transform: uppercase;
+		padding: 100px 20px 80px;
+	}
 }
 
 /* ==========================================================================
@@ -359,12 +403,33 @@ Projects
 ========================================================================== */
 .project {
 	max-width: 50%;
-	margin: 20px auto;
+	margin: 0 auto;
 	text-align: center;
-	background-color: white;
-	color: black;
+	color: white;
 	padding: 20px;
+	.teaser-img {
+		padding: 0 20px;
+	}
+	.project-desc {
+		margin: 30px 20px;
+	}
+	@include break($mobile) {
+		max-width: 100%;
+	}
+}
 
+/* ==========================================================================
+About
+========================================================================== */
+.aboutPanel {
+	display: flex;
+	padding: 50px 0;
+}
+.about {
+	align-self: center;
+	max-width: $mobile;
+	margin: 0 auto;
+	padding: 0 40px;
 }
 
 /* ==========================================================================
@@ -400,18 +465,19 @@ header {
 			background-color: $pink;
 			border: 10px double $darkpink;
 			cursor: pointer;
-			@include transition(all 0.1s linear);
+			@include transition(transform 0.1s linear);
 			img {
 				width: 80%;
 				margin: 0 auto;
 				@include transition(all 0.2s ease-in-out);
 				&:hover {
-					transform: scale(1.1);
+					transform: scale(1.05);
 					@include webkit-flickr;
 				}
 			}
 			&.about-visible {
-				transform: translateY(100vh - $aboutPanel);
+				transform: translateY(40vh);
+				margin-left: 25px;
 				position: fixed;
 				z-index: 1001;
 				max-width: 294px;
@@ -422,6 +488,39 @@ header {
 		display: block;
 		text-align: center;
 		padding-bottom: 100px;
+	}
+
+	// MOBILE STYLING
+	@include break($mobile) {
+		h1 {
+			padding: 100px 30px 70px;
+			font-size: 3em;
+		}
+		.logoContainer {
+			text-align: center;
+			min-height: 350px;
+			.logo {
+				width: 250px;
+				@include bouncetransition;
+				transition-property: transform;
+				&.about-visible {
+					right: 0;
+					left: 0;
+					margin: 0 auto;
+				}
+				.slideLeft & {
+					transform: translateX(-999px);
+				}
+				.slideRight & {
+					left: inherit;
+					transform: translateX(999px);
+				}
+			}
+			h3 {
+				opacity: 0;
+				display: none;
+			}
+		}
 	}
 }
 section.social {
@@ -491,6 +590,14 @@ section.contact-form {
 			color: white;
 			margin: 0 auto;
 			display: block;
+		}
+
+		// MOBILE STYLES
+		@include break($mobile) {
+			input, button {
+				display: block;
+				width: 100%;
+			}
 		}
 	}
 }

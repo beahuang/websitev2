@@ -1,95 +1,87 @@
 {
+  "about" : {
+    "about-desc" : {
+      "description" : "I'm a web developer and a designer pursuing a degree in Computer Science and Interactive Media at Northeastern Unviersity but I'm currently studying abroad in Melbourne, Australia. I believe that any project can be 100x better with a good design. The best way to learn is by doing, so please drop me a message at huang.be@husky.neu.edu if you have a cool project you'd like to share!",
+      "image" : "dist/images/me.jpg",
+      "tagline" : "Hey! I'm Beatrice"
+    }
+  },
   "desProjects" : {
-    "3d-model" : {
-      "name" : "3d Modeling",
+    "project1" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/flickr-teaser.png"
       },
-      "technology" : "Autodesk Maya, Photoshop"
-    },
-    "flickr" : {
-      "name" : "Flickr Photography",
-      "description" : "this is a description",
       "link" : "https://www.flickr.com/gp/135329529@N03/LN0Z0t",
-      "image" : {
-        "image1" : "img.png"
-      },
+      "name" : "Flickr Photography",
       "technology" : "Photoshop"
     },
-    "art" : {
-      "name" : "Art Projects",
+    "project2" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/3dmodelling-teaser.png"
       },
+      "name" : "3d Modeling",
+      "technology" : "Autodesk Maya, Photoshop"
+    },
+    "project3" : {
+      "description" : "this is a description",
+      "image" : {
+        "image1" : "dist/images/projects/art-teaser.png"
+      },
+      "name" : "Art Projects",
       "technology" : "Acrylic Paint, Sharpie, Photoshop, etc"
     }
   },
   "devProjects" : {
-    "webv2" : {
-      "name" : "New Portfolio",
+  	"project1" : {
+  	  "description" : "this is a description",
+  	  "image" : {
+  	    "image1" : "http://placehold.it/350x150"
+  	  },
+  	  "name" : "New Portfolio",
+  	  "technology" : "ReactJS, HTML, JS, SASS, Firebase"
+  	},
+    "project2" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/deepis-teaser.png"
       },
-      "technology" : "ReactJS, HTML, JS, SASS, Firebase"
-    },
-    "rotel" : {
-      "name" : "Rotel North America",
-      "description" : "This hasn't been pushed live yet so I can't share anything yet. Stay tuned!",
-      "image" : {
-        "image1" : "img.png"
-      }
-    },
-    "deepis" : {
-      "name" : "DeepIS",
-      "description" : "this is a description",
       "link" : "http://deep.is",
-      "image" : {
-        "image1" : "img.png"
-      },
+      "name" : "DeepIS",
       "technology" : "Drupal, HTML, JS, CSS, PHP"
     },
-    "ruota" : {
-      "name" : "Ruota Consulting",
+    "project3" : {
       "description" : "this is a description",
+      "image" : {
+        "image1" : "dist/images/projects/ruota-teaser.png"
+      },
       "link" : "http://ruota.consulting/",
-      "image" : {
-        "image1" : "img.png"
-      },
+      "name" : "Ruota Consulting",
       "technology" : "Drupal, HTML, JS, CSS, PHP"
     },
-    "videogames" : {
-      "name" : "History of Videogames",
+    "project4" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/videogames-teaser.png"
       },
+      "name" : "History of Videogames",
       "technology" : "HTML, JS, SASS"
     },
-    "webv1" : {
-      "name" : "Old Portfolio",
+    "project5" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/carpenoctem-teaser.png"
       },
-      "technology" : "HTML, JS, CSS"
-    },
-    "carpenoctem" : {
       "name" : "Carpenoctem",
-      "description" : "this is a description",
-      "image" : {
-        "image1" : "img.png"
-      },
       "technology" : "HTML, JS, CSS, PHP"
     },
-    "instafilter" : {
-      "name" : "Instafilter",
+    "project7" : {
       "description" : "this is a description",
       "image" : {
-        "image1" : "img.png"
+        "image1" : "dist/images/projects/oldportfolio-teaser.png"
       },
+      "name" : "Old Portfolio",
       "technology" : "HTML, JS, CSS"
     }
   }

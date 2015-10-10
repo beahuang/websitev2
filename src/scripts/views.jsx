@@ -3,7 +3,8 @@ var App = React.createClass({
 	getInitialState: function() {
 		return {
 			devProjects: [],
-			desProjects: []
+			desProjects: [],
+			about: []
 		};
 	},
 	componentWillMount: function() {
@@ -11,6 +12,8 @@ var App = React.createClass({
 		this.bindAsArray(firebaseRef, "devProjects");
 		var firebaseRef2 = new Firebase("https://flickering-fire-8802.firebaseio.com/desProjects");
 		this.bindAsArray(firebaseRef2, "desProjects");
+		var firebaseRef3 = new Firebase("https://flickering-fire-8802.firebaseio.com/about");
+		this.bindAsArray(firebaseRef3, "about");
 	},
 	showLeft: function() {
 		this.refs.dev.show();
@@ -34,7 +37,9 @@ var App = React.createClass({
 		return (
 			<div>
 				<Nav showLeft={this.showLeft} showRight={this.showRight} reset={this.reset}></Nav>
-				<Panel ref="about" alignment="top" id="aboutPanel"></Panel>
+				<Panel ref="about" alignment="top" id="aboutPanel">
+					<About about={this.state.about}></About>
+				</Panel>
 				<MainPanel ref="main" onClick="{this.reset}">
 					<Header showTop={this.showTop} reset={this.reset}></Header>
 					<Social></Social>
@@ -104,10 +109,21 @@ var Panel = React.createClass({
 		document.body.className = "";
 	},
 
+	returnTitle: function() {
+		if (this.props.id == "devPanel") {
+			return <h2 className="title">Code Projects</h2>
+		} else if (this.props.id == "desPanel") {
+			return <h2 className="title">Design Projects</h2>
+		}
+	},
+
 	render: function() {
 		return (
 			<div className="panel">
-				<div className={(this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}>{this.props.children}</div>
+				<div className={(this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}>
+					{this.returnTitle()}
+					{this.props.children}
+				</div>
 			</div>
 		);
 	}
@@ -118,15 +134,41 @@ var Project = React.createClass({
 	  var createProject = function(project, i) {
 		return (
 			<div className="project" key={i}>
-				<p>{project.name}</p>
-				<p>{project.image.image1}</p>
-				<p>{project.description}</p>
-				<p>{project.technology}</p>
-				<p>{project.link}</p>
+				<img className="teaser-img" src={project.image.image1}/>
+				<div className="project-desc">
+					<h4>{project.name}</h4>
+					<p>{project.description}</p>
+					<p><b>Technology:</b> {project.technology}</p>
+					<a className="btn">See More</a>
+				</div>
 			</div>
 		);
 	  };
 	  return <ul>{this.props.projects.map(createProject)}</ul>;
+	}
+});
+
+var About = React.createClass({
+	// render: function() {
+	// 	return (
+	// 		<div className="about">
+	// 			<h2>{this.props.about}</h2>
+	// 			<img/>
+	// 			<p>I'm a web developer and a designer pursuing a degree in Computer Science and Interactive Media at Northeastern Unviersity but I'm currently studying abroad in Melbourne, Australia. I believe that any project can be 100x better with a good design. The best way to learn is by doing, so please drop me a message at huang.be@husky.neu.edu if you have a cool project you'd like to share!</p>
+	// 		</div>
+	// 	);
+	// }
+	render: function() {
+	  var createAbout = function(about, i) {
+		return (
+			<div className="about-wrapper" key="i">
+				<h2>{about.tagline}</h2>
+				<p>{about.description}</p>
+				<p>{about.technology}</p>
+			</div>
+		);
+	  };
+	  return <div className="about">{this.props.about.map(createAbout)}</div>;
 	}
 });
 

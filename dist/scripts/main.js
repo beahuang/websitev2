@@ -9,7 +9,8 @@ var App = React.createClass({displayName: "App",
 	getInitialState: function() {
 		return {
 			devProjects: [],
-			desProjects: []
+			desProjects: [],
+			about: []
 		};
 	},
 	componentWillMount: function() {
@@ -17,6 +18,8 @@ var App = React.createClass({displayName: "App",
 		this.bindAsArray(firebaseRef, "devProjects");
 		var firebaseRef2 = new Firebase("https://flickering-fire-8802.firebaseio.com/desProjects");
 		this.bindAsArray(firebaseRef2, "desProjects");
+		var firebaseRef3 = new Firebase("https://flickering-fire-8802.firebaseio.com/about");
+		this.bindAsArray(firebaseRef3, "about");
 	},
 	showLeft: function() {
 		this.refs.dev.show();
@@ -40,7 +43,9 @@ var App = React.createClass({displayName: "App",
 		return (
 			React.createElement("div", null, 
 				React.createElement(Nav, {showLeft: this.showLeft, showRight: this.showRight, reset: this.reset}), 
-				React.createElement(Panel, {ref: "about", alignment: "top", id: "aboutPanel"}), 
+				React.createElement(Panel, {ref: "about", alignment: "top", id: "aboutPanel"}, 
+					React.createElement(About, {about: this.state.about})
+				), 
 				React.createElement(MainPanel, {ref: "main", onClick: "{this.reset}"}, 
 					React.createElement(Header, {showTop: this.showTop, reset: this.reset}), 
 					React.createElement(Social, null), 
@@ -110,10 +115,21 @@ var Panel = React.createClass({displayName: "Panel",
 		document.body.className = "";
 	},
 
+	returnTitle: function() {
+		if (this.props.id == "devPanel") {
+			return React.createElement("h2", {className: "title"}, "Code Projects")
+		} else if (this.props.id == "desPanel") {
+			return React.createElement("h2", {className: "title"}, "Design Projects")
+		}
+	},
+
 	render: function() {
 		return (
 			React.createElement("div", {className: "panel"}, 
-				React.createElement("div", {className: (this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}, this.props.children)
+				React.createElement("div", {className: (this.state.visible ? "visible " : "") + this.props.alignment + " " + this.props.id}, 
+					this.returnTitle(), 
+					this.props.children
+				)
 			)
 		);
 	}
@@ -124,15 +140,41 @@ var Project = React.createClass({displayName: "Project",
 	  var createProject = function(project, i) {
 		return (
 			React.createElement("div", {className: "project", key: i}, 
-				React.createElement("p", null, project.name), 
-				React.createElement("p", null, project.image.image1), 
-				React.createElement("p", null, project.description), 
-				React.createElement("p", null, project.technology), 
-				React.createElement("p", null, project.link)
+				React.createElement("img", {className: "teaser-img", src: project.image.image1}), 
+				React.createElement("div", {className: "project-desc"}, 
+					React.createElement("h4", null, project.name), 
+					React.createElement("p", null, project.description), 
+					React.createElement("p", null, React.createElement("b", null, "Technology:"), " ", project.technology), 
+					React.createElement("a", {className: "btn"}, "See More")
+				)
 			)
 		);
 	  };
 	  return React.createElement("ul", null, this.props.projects.map(createProject));
+	}
+});
+
+var About = React.createClass({displayName: "About",
+	// render: function() {
+	// 	return (
+	// 		<div className="about">
+	// 			<h2>{this.props.about}</h2>
+	// 			<img/>
+	// 			<p>I'm a web developer and a designer pursuing a degree in Computer Science and Interactive Media at Northeastern Unviersity but I'm currently studying abroad in Melbourne, Australia. I believe that any project can be 100x better with a good design. The best way to learn is by doing, so please drop me a message at huang.be@husky.neu.edu if you have a cool project you'd like to share!</p>
+	// 		</div>
+	// 	);
+	// }
+	render: function() {
+	  var createAbout = function(about, i) {
+		return (
+			React.createElement("div", {className: "about-wrapper", key: "i"}, 
+				React.createElement("h2", null, about.tagline), 
+				React.createElement("p", null, about.description), 
+				React.createElement("p", null, about.technology)
+			)
+		);
+	  };
+	  return React.createElement("div", {className: "about"}, this.props.about.map(createAbout));
 	}
 });
 
