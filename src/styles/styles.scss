@@ -143,9 +143,9 @@ h4 {
 }
 
 h1 {
-    font-size: 4em;
+    font-size: 5em;
     letter-spacing: 3px;
-    font-family: Akzidenz;
+    font-family: Bree;
 }
 
 h2 {
@@ -354,7 +354,7 @@ Panels
 	&.slideDown{
 		top: $aboutPanel;
 		header {
-			h1,h3 {
+			.title,h3 {
 				transform: translateY(20vh);
 				@include transition(transform 0.1s linear);
 			}
@@ -485,10 +485,8 @@ Main Panel
 header {
 	margin: 0 auto;
 	max-width: $tablet;
-	h1 {
-		text-align: center;
-		text-transform: uppercase;
-		padding: 100px 60px 70px;
+	.title {
+		padding: 100px 60px 0px;
 	}
 	.logoContainer {
 		max-width: $mobile;
@@ -549,9 +547,8 @@ header {
 
 	// MOBILE STYLING
 	@include break($mobile) {
-		h1 {
-			padding: 100px 30px 70px;
-			font-size: 3em;
+		.title {
+			padding: 100px 10px 0px;
 		}
 		.logoContainer {
 			text-align: center;

@@ -13,6 +13,10 @@
   font-family: Akzidenz;
   src: url("../fonts/Berthold-Akzidenz-Grotesk-Medium.otf") format("opentype"); }
 
+@font-face {
+  font-family: Bree;
+  src: url("../fonts/BreeSerif-Regular.otf") format("opentype"); }
+
 [data-icon]:before {
   font-family: "website" !important;
   content: attr(data-icon);

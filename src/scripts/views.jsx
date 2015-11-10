@@ -218,7 +218,7 @@ var Header = React.createClass({
 	render: function(){
 		return (
 			<header>
-				<h1>Beatrice Huang</h1>
+				<img className="title" src="dist/images/title.png"/>
 				<div className="logoContainer">
 					<h3>Developer</h3>
 					<span className={(this.state.aboutVisible ? "about-visible " : "") + "logo"} onClick={this.aboutOpen}><img src="dist/images/me.png"/></span>

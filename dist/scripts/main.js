@@ -224,7 +224,7 @@ var Header = React.createClass({displayName: "Header",
 	render: function(){
 		return (
 			React.createElement("header", null, 
-				React.createElement("h1", null, "Beatrice Huang"), 
+				React.createElement("img", {className: "title", src: "dist/images/title.png"}), 
 				React.createElement("div", {className: "logoContainer"}, 
 					React.createElement("h3", null, "Developer"), 
 					React.createElement("span", {className: (this.state.aboutVisible ? "about-visible " : "") + "logo", onClick: this.aboutOpen}, React.createElement("img", {src: "dist/images/me.png"})), 
