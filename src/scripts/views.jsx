@@ -132,14 +132,20 @@ var Panel = React.createClass({
 var Project = React.createClass({
 	render: function() {
 	  var createProject = function(project, i) {
+
+  		if (project.link) {
+  			var href = project.link
+  			var show = true
+  		}
+
 		return (
 			<div className="project" key={i}>
 				<img className="teaser-img" src={project.image.image1}/>
 				<div className="project-desc">
-					<h4>{project.name}</h4>
-					<p>{project.description}</p>
-					<p><b>Technology:</b> {project.technology}</p>
-					<a className="btn">See More</a>
+					<h3>{project.name}</h3>
+					<p className="desc-text">{project.description}</p>
+					<p className="desc-tags"><b>Technology:</b> {project.technology}</p>
+					<a className={show ? "btn show" : "hide"} href={href} target="_blank">See More</a>
 				</div>
 			</div>
 		);
@@ -234,9 +240,13 @@ var Social = React.createClass({
 		return (
 			<section className="social">
 				<ul>
-					<a href="google.com"><li className="icon-email"></li></a>
-					<a href="google.com"><li className="icon-linkedin"></li></a>
-					<a href="google.com"><li className="icon-github"></li></a>
+					<a href="mailto:huang.be@husky.neu.edu"><li className="icon-email"></li></a>
+					<a href="http://www.linkedin.com/pub/beatrice-huang/7b/627/1b9" target="_blank">
+						<li className="icon-linkedin"></li>
+					</a>
+					<a href="https://github.com/beahuang" target="_blank">
+						<li className="icon-github"></li>
+					</a>
 				</ul>
 			</section>
 		);

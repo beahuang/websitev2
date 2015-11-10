@@ -5,6 +5,14 @@
   font-weight: normal;
   font-style: normal; }
 
+@font-face {
+  font-family: BrownStd;
+  src: url("../fonts/BrownStd-Regular.otf") format("opentype"), url("../fonts/BrownStd-Regular.woff") format("woff"); }
+
+@font-face {
+  font-family: Akzidenz;
+  src: url("../fonts/Berthold-Akzidenz-Grotesk-Medium.otf") format("opentype"); }
+
 [data-icon]:before {
   font-family: "website" !important;
   content: attr(data-icon);
@@ -133,7 +141,7 @@ html {
   color: #222;
   font-size: 1em;
   line-height: 1.4;
-  font-family: Calibri; }
+  font-family: BrownStd; }
 
 body {
   margin: 0;
@@ -200,21 +208,23 @@ a {
 
 h1, h2, h3, h4 {
   font-weight: normal;
-  margin: 0; }
+  margin: 0;
+  line-height: 1; }
 
 h1 {
-  font-size: 5em;
-  line-height: 40px; }
+  font-size: 4em;
+  letter-spacing: 3px;
+  font-family: Akzidenz; }
 
 h2 {
-  font-size: 2.5em;
-  line-height: 40px; }
+  font-size: 3em;
+  letter-spacing: 3px;
+  font-family: Akzidenz; }
 
 h3 {
-  font-size: 2em; }
-
-h4 {
-  font-size: 1.7em; }
+  font-size: 2.2em;
+  letter-spacing: 1px;
+  padding-bottom: 5px; }
 
 /* ==========================================================================
 Helpers
@@ -245,13 +255,14 @@ ul {
   font-weight: 700;
   position: relative;
   border: 3px solid #fff;
+  font-size: 0.8em;
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   -webkit-transform-style: preserve-3d;
   -webkit-backface-visibility: hidden; }
   .btn:after {
     content: '';
-    width: 101%;
+    width: 100%;
     height: 0;
     top: 50%;
     left: 50%;
@@ -269,7 +280,7 @@ ul {
   .btn:hover {
     color: #4C94D4; }
     .btn:hover:after {
-      height: 75%;
+      height: 102%;
       opacity: 1; }
   @media (max-width: 960px) {
     .btn {
@@ -308,7 +319,8 @@ nav .devbtn, nav .desbtn {
     -ms-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    display: block; }
+    display: block;
+    font-size: 0.8em; }
   nav .devbtn:before, nav .desbtn:before {
     -ms-transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
@@ -416,7 +428,7 @@ Panels
   .desPanel h2.title, .devPanel h2.title, .aboutPanel h2.title {
     text-align: center;
     text-transform: uppercase;
-    padding: 100px 20px 80px; }
+    padding: 100px 20px 50px; }
 
 /* ==========================================================================
 Projects
@@ -431,6 +443,18 @@ Projects
     padding: 0 20px; }
   .project .project-desc {
     margin: 30px 20px; }
+    .project .project-desc h3 {
+      padding: 5px 0; }
+    .project .project-desc .desc-text {
+      font-size: 0.8em;
+      text-align: left; }
+    .project .project-desc .desc-tags {
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      font-size: 0.9em;
+      text-align: left; }
+  .project a.hide {
+    display: none; }
   @media (max-width: 700px) {
     .project {
       max-width: 100%; } }
@@ -561,10 +585,11 @@ section.contact-form {
     padding: 30px 0;
     text-align: center; }
     section.contact-form form p {
-      margin: 0.3em 0 1em; }
+      margin: 0.3em 0 1em;
+      font-size: 0.8em; }
     section.contact-form form input {
       display: inline-block;
-      width: 49%;
+      width: 49.5%;
       padding: 15px;
       margin-bottom: 10px;
       border: 2px solid #F45657;
@@ -585,8 +610,6 @@ section.contact-form {
       transition: all 0.2s ease-in-out; }
       section.contact-form form input::-webkit-input-placeholder, section.contact-form form textarea::-webkit-input-placeholder {
         color: black !important; }
-      section.contact-form form input::-webkit-input-placeholder, section.contact-form form textarea::-webkit-input-placeholder {
-        color: black !important; }
       section.contact-form form input:-moz-placeholder, section.contact-form form textarea:-moz-placeholder {
         color: black; }
       section.contact-form form input::-moz-placeholder, section.contact-form form textarea::-moz-placeholder {
@@ -594,13 +617,16 @@ section.contact-form {
       section.contact-form form input:-ms-input-placeholder, section.contact-form form textarea:-ms-input-placeholder {
         color: black; }
       section.contact-form form input:focus, section.contact-form form textarea:focus {
-        border: 2px solid #CE001E;
+        border: 2px solid #1A5B9E;
         outline: none; }
     section.contact-form form button {
       background-color: transparent;
       color: white;
       margin: 0 auto;
-      display: block; }
+      display: block;
+      font-family: BrownStd; }
+      section.contact-form form button:after {
+        width: 101%; }
     @media (max-width: 700px) {
       section.contact-form form input, section.contact-form form button {
         display: block;

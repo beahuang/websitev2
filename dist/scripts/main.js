@@ -138,14 +138,20 @@ var Panel = React.createClass({displayName: "Panel",
 var Project = React.createClass({displayName: "Project",
 	render: function() {
 	  var createProject = function(project, i) {
+
+  		if (project.link) {
+  			var href = project.link
+  			var show = true
+  		}
+
 		return (
 			React.createElement("div", {className: "project", key: i}, 
 				React.createElement("img", {className: "teaser-img", src: project.image.image1}), 
 				React.createElement("div", {className: "project-desc"}, 
-					React.createElement("h4", null, project.name), 
-					React.createElement("p", null, project.description), 
-					React.createElement("p", null, React.createElement("b", null, "Technology:"), " ", project.technology), 
-					React.createElement("a", {className: "btn"}, "See More")
+					React.createElement("h3", null, project.name), 
+					React.createElement("p", {className: "desc-text"}, project.description), 
+					React.createElement("p", {className: "desc-tags"}, React.createElement("b", null, "Technology:"), " ", project.technology), 
+					React.createElement("a", {className: show ? "btn show" : "hide", href: href, target: "_blank"}, "See More")
 				)
 			)
 		);
@@ -240,9 +246,13 @@ var Social = React.createClass({displayName: "Social",
 		return (
 			React.createElement("section", {className: "social"}, 
 				React.createElement("ul", null, 
-					React.createElement("a", {href: "google.com"}, React.createElement("li", {className: "icon-email"})), 
-					React.createElement("a", {href: "google.com"}, React.createElement("li", {className: "icon-linkedin"})), 
-					React.createElement("a", {href: "google.com"}, React.createElement("li", {className: "icon-github"}))
+					React.createElement("a", {href: "mailto:huang.be@husky.neu.edu"}, React.createElement("li", {className: "icon-email"})), 
+					React.createElement("a", {href: "http://www.linkedin.com/pub/beatrice-huang/7b/627/1b9", target: "_blank"}, 
+						React.createElement("li", {className: "icon-linkedin"})
+					), 
+					React.createElement("a", {href: "https://github.com/beahuang", target: "_blank"}, 
+						React.createElement("li", {className: "icon-github"})
+					)
 				)
 			)
 		);

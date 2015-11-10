@@ -3,29 +3,39 @@
     "about-desc" : {
       "description" : "I'm a web developer and a designer pursuing a degree in Computer Science and Interactive Media at Northeastern Unviersity but I'm currently studying abroad in Melbourne, Australia. I believe that any project can be 100x better with a good design. The best way to learn is by doing, so please drop me a message at huang.be@husky.neu.edu if you have a cool project you'd like to share!",
       "image" : "dist/images/me.jpg",
-      "tagline" : "Hey! I'm Beatrice"
+      "tagline" : "Hey! I'm Beatrice."
     }
   },
   "desProjects" : {
     "project1" : {
-      "description" : "this is a description",
+      "description" : "I created this homage to Tom and Jerry for my Design Studio: Concepts and Narratives final project using 1950's advertisements, paper, scissors and a lot of my free time.",
+      "image" : {
+        "image1" : "dist/images/projects/cutpaper-teaser.png"
+      },
+      "link" : "https://drive.google.com/file/d/0ByLGR16IZvoxaXlhd3huUVB5RTg/view",
+      "name" : "Cut-Paper Animation",
+      "technology" : "AfterEffects, Photoshop, Audacity"
+    },
+    "project2" : {
+      "description" : "I created this 3d castle based loosely off of LOTR's Minas Morgul and a showreel with other models I created for my 3D Modelling Objects and Environment's final project",
+      "image" : {
+        "image1" : "dist/images/projects/3dmodelling-teaser.png"
+      },
+      "link" : "https://drive.google.com/file/d/0ByLGR16IZvoxTEtvMTh3YUhMa2M/view",
+      "name" : "3d Modeling",
+      "technology" : "Autodesk Maya, AfterEffects, Photoshop"
+    },
+    "project3" : {
+      "description" : "Throughout my journey through Australia I took a photography class and as my final project compiled my favorite pictures into a bound book",
       "image" : {
         "image1" : "dist/images/projects/flickr-teaser.png"
       },
       "link" : "https://www.flickr.com/gp/135329529@N03/LN0Z0t",
       "name" : "Flickr Photography",
-      "technology" : "Photoshop"
+      "technology" : "Photoshop, Nikon Coolpix P520"
     },
-    "project2" : {
-      "description" : "this is a description",
-      "image" : {
-        "image1" : "dist/images/projects/3dmodelling-teaser.png"
-      },
-      "name" : "3d Modeling",
-      "technology" : "Autodesk Maya, Photoshop"
-    },
-    "project3" : {
-      "description" : "this is a description",
+    "project4" : {
+      "description" : "Here are some other pieces of art i've worked on",
       "image" : {
         "image1" : "dist/images/projects/art-teaser.png"
       },
@@ -34,16 +44,25 @@
     }
   },
   "devProjects" : {
-  	"project1" : {
-  	  "description" : "this is a description",
-  	  "image" : {
-  	    "image1" : "http://placehold.it/350x150"
-  	  },
-  	  "name" : "New Portfolio",
-  	  "technology" : "ReactJS, HTML, JS, SASS, Firebase"
-  	},
+    "project1" : {
+      "description" : "This is a single page application portfolio created to showcase the new skills i've acquired.",
+      "image" : {
+        "image1" : "http://placehold.it/350x150"
+      },
+      "name" : "New Portfolio",
+      "technology" : "ReactJS, HTML, JS, SASS, Firebase"
+    },
     "project2" : {
-      "description" : "this is a description",
+      "description" : "While working at Tank I developed this brand site for ruota consulting to showcase their works as well as get them prospective clients",
+      "image" : {
+        "image1" : "dist/images/projects/rotel-teaser.png"
+      },
+      "link" : "http://www.rotel.com/",
+      "name" : "Rotel",
+      "technology" : "Drupal, HTML, JS, CSS, PHP"
+    },
+    "project3" : {
+      "description" : "At Tank I developed this brand site for deepis to showcase their new storage engine that creates a highly scalable database",
       "image" : {
         "image1" : "dist/images/projects/deepis-teaser.png"
       },
@@ -51,8 +70,8 @@
       "name" : "DeepIS",
       "technology" : "Drupal, HTML, JS, CSS, PHP"
     },
-    "project3" : {
-      "description" : "this is a description",
+    "project4" : {
+      "description" : "At Tank I developed this brand site for ruota consulting to showcase their works as well as get them prospective clients",
       "image" : {
         "image1" : "dist/images/projects/ruota-teaser.png"
       },
@@ -60,24 +79,33 @@
       "name" : "Ruota Consulting",
       "technology" : "Drupal, HTML, JS, CSS, PHP"
     },
-    "project4" : {
-      "description" : "this is a description",
+    "project5" : {
+      "description" : "This was a website showing a timeline of the notable games and consoles throughout the years up until 2015",
       "image" : {
         "image1" : "dist/images/projects/videogames-teaser.png"
       },
       "name" : "History of Videogames",
       "technology" : "HTML, JS, SASS"
     },
-    "project5" : {
-      "description" : "this is a description",
+    "project6" : {
+      "description" : "When I interned at B-REEL I was able to work as a front-end developer on this site. I worked along side experiences developers to create a website for the truth which is an anti-smoking campaign for teenagers to be launched during the 2014 VMAs",
+      "image" : {
+        "image1" : "dist/images/projects/thetruth-teaser.png"
+      },
+      "link" : "http://www.thetruth.com",
+      "name" : "the truth",
+      "technology" : "Laravel, JS, SASS, mySQL"
+    },
+    "project7" : {
+      "description" : "This was a group project that I worked out with a couple other students for our digital narrative class. We had to create a full interactive experience in only 2 weeks so we came up with this zombie apocalypse game.",
       "image" : {
         "image1" : "dist/images/projects/carpenoctem-teaser.png"
       },
       "name" : "Carpenoctem",
       "technology" : "HTML, JS, CSS, PHP"
     },
-    "project7" : {
-      "description" : "this is a description",
+    "project8" : {
+      "description" : "This was my beginning porftolio when I first started out as a web developer that I made in 2013. I think it shows how much i've grown in skill since then.",
       "image" : {
         "image1" : "dist/images/projects/oldportfolio-teaser.png"
       },

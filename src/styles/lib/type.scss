@@ -9,7 +9,17 @@
     url("../fonts/website.svg#website") format("svg");
   font-weight: normal;
   font-style: normal;
+}
 
+@font-face {
+  font-family: BrownStd;
+  src: url("../fonts/BrownStd-Regular.otf") format("opentype"),
+  url("../fonts/BrownStd-Regular.woff") format("woff"),;
+}
+
+@font-face {
+  font-family: Akzidenz;
+  src: url("../fonts/Berthold-Akzidenz-Grotesk-Medium.otf") format("opentype");
 }
 
 [data-icon]:before {
