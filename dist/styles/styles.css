@@ -54,6 +54,12 @@
 .icon-email:before {
   content: "f"; }
 
+.icon-arrow-left {
+  content: "g"; }
+
+.icon-arrow-right {
+  content: "h"; }
+
 /* ==========================================================================
    Mixins
    ========================================================================== */
@@ -76,6 +82,10 @@
 /*
 @name: break-min
 @description: applies a max-width media query breakpoint.
+*/
+/*
+@name: break-max-height
+@description: applies a max-height media query breakpoint.
 */
 /*
 @name: clear
@@ -334,9 +344,9 @@ nav .devbtn {
   nav .devbtn:before {
     margin: 10px 50px -10px 3px; }
   nav .devbtn.left {
-    left: -80vw; }
+    left: -100vw; }
   nav .devbtn.right {
-    left: 80vw; }
+    left: 100vw; }
 nav .desbtn {
   margin-right: -75px;
   padding: 75px 50px 0px 10px;
@@ -344,19 +354,22 @@ nav .desbtn {
   nav .desbtn:before {
     margin: 0 35px 0 0; }
   nav .desbtn.left {
-    right: 80vw; }
+    right: 100vw; }
   nav .desbtn.right {
-    right: -80vw; }
-@media (max-width: 700px) {
+    right: -100vw; }
+@media (max-width: 760px) {
   nav li.devbtn, nav li.desbtn {
     top: 10px;
     padding: 0;
     margin: 0;
     background-color: transparent;
+    height: 65px;
+    width: 65px;
+    padding: 5px;
     -webkit-transform: none;
         -ms-transform: none;
             transform: none;
-    width: inherit; }
+    position: fixed; }
     nav li.devbtn:before, nav li.devbtn a, nav li.desbtn:before, nav li.desbtn a {
       -webkit-transform: none;
           -ms-transform: none;
@@ -366,11 +379,19 @@ nav .desbtn {
   nav .devbtn {
     left: 10px; }
     nav .devbtn.right {
-      left: 85vw; }
+      left: calc(100vw - 73px);
+      z-index: 10000;
+      background-color: #207FE1; }
+      nav .devbtn.right:before {
+        content: "h"; }
   nav .desbtn {
     right: 10px; }
     nav .desbtn.left {
-      right: 85vw; } }
+      left: 0;
+      z-index: 10000;
+      background-color: #207FE1; }
+      nav .desbtn.left:before {
+        content: "g"; } }
 
 /* ==========================================================================
 Panels
@@ -385,9 +406,9 @@ Panels
   -webkit-transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09);
   transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09); }
   #mainPanel.slideLeft {
-    left: -80vw; }
+    left: -100vw; }
   #mainPanel.slideRight {
-    left: 80vw; }
+    left: 100vw; }
   #mainPanel.slideDown {
     top: 80vh; }
     #mainPanel.slideDown header h1, #mainPanel.slideDown header h3 {
@@ -396,9 +417,12 @@ Panels
               transform: translateY(20vh);
       -webkit-transition: -webkit-transform 0.1s linear;
       transition: transform 0.1s linear; }
+  @media (max-width: 760px) {
+    #mainPanel.slideLeft, #mainPanel.slideRight {
+      position: fixed; } }
 
 .desPanel, .devPanel, .aboutPanel {
-  width: 80vw;
+  width: 100vw;
   height: 100%;
   top: 0;
   z-index: 1000;
@@ -408,13 +432,13 @@ Panels
   -webkit-transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09);
   transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09); }
   .desPanel.left, .devPanel.left, .aboutPanel.left {
-    left: -80vw; }
+    left: -100vw; }
     .desPanel.left.visible, .devPanel.left.visible, .aboutPanel.left.visible {
       left: 0px;
       overflow-y: scroll;
       overflow-x: hidden; }
   .desPanel.right, .devPanel.right, .aboutPanel.right {
-    right: -80vw; }
+    right: -100vw; }
     .desPanel.right.visible, .devPanel.right.visible, .aboutPanel.right.visible {
       right: 0px;
       overflow-y: scroll;
@@ -442,7 +466,7 @@ Projects
   .project .teaser-img {
     padding: 0 20px; }
   .project .project-desc {
-    margin: 30px 20px; }
+    margin: 30px 0; }
     .project .project-desc h3 {
       padding: 5px 0; }
     .project .project-desc .desc-text {
@@ -455,7 +479,7 @@ Projects
       text-align: left; }
   .project a.hide {
     display: none; }
-  @media (max-width: 700px) {
+  @media (max-width: 760px) {
     .project {
       max-width: 100%; } }
 
@@ -466,16 +490,22 @@ About
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
-  display: flex;
-  padding: 50px 0; }
-
-.about {
-  -webkit-align-self: center;
-      -ms-flex-item-align: center;
-          align-self: center;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 0 40px; }
+  display: flex; }
+  .aboutPanel .about {
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px; }
+  @media (max-width: 760px) {
+    .aboutPanel .about {
+      padding: 0 30px;
+      margin-top: -5vh; }
+      .aboutPanel .about p {
+        font-size: 0.8em; }
+      .aboutPanel .about h2 {
+        font-size: 2em; } }
 
 /* ==========================================================================
 Main Panel
@@ -488,9 +518,10 @@ header {
     text-transform: uppercase;
     padding: 100px 60px 70px; }
   header .logoContainer {
-    max-width: 700px;
+    max-width: 760px;
     margin: 0 auto;
-    padding-bottom: 50px; }
+    padding-bottom: 50px;
+    margin-top: -20px; }
     header .logoContainer h3, header .logoContainer span {
       display: inline-block; }
     header .logoContainer h3 {
@@ -520,18 +551,30 @@ header {
           -webkit-transform-style: preserve-3d;
           -webkit-backface-visibility: hidden; }
       header .logoContainer .logo.about-visible {
-        -webkit-transform: translateY(40vh);
-            -ms-transform: translateY(40vh);
-                transform: translateY(40vh);
+        -webkit-transform: translateY(35vh);
+            -ms-transform: translateY(35vh);
+                transform: translateY(35vh);
         margin-left: 25px;
         position: fixed;
         z-index: 1001;
         max-width: 294px; }
+        @media (max-height: 760px) {
+          header .logoContainer .logo.about-visible {
+            -webkit-transform: translateY(20vh);
+                -ms-transform: translateY(20vh);
+                    transform: translateY(20vh); } }
+        @media (max-height: 400px) {
+          header .logoContainer .logo.about-visible {
+            -webkit-transform: translateY(3vh);
+                -ms-transform: translateY(3vh);
+                    transform: translateY(3vh);
+            height: 175px;
+            width: 175px; } }
   header .resume {
     display: block;
     text-align: center;
     padding-bottom: 100px; }
-  @media (max-width: 700px) {
+  @media (max-width: 760px) {
     header h1 {
       padding: 100px 30px 70px;
       font-size: 3em; }
@@ -627,7 +670,7 @@ section.contact-form {
       font-family: BrownStd; }
       section.contact-form form button:after {
         width: 101%; }
-    @media (max-width: 700px) {
+    @media (max-width: 760px) {
       section.contact-form form input, section.contact-form form button {
         display: block;
         width: 100%; } }

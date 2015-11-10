@@ -20,16 +20,18 @@ $gray : #455466;
 
 
 // Breakpoints
-$mobile: 700px;
+$mobile: 760px;
 $tablet: 960px;
+$mobile-landscape: 400px;
 
 // PanelSize
 $panelSize: 70vw;
 $aboutPanel: 80vh;
 
 @include break($mobile) {
-	$panelSize: 80vw;
+	$panelSize: 100vw;
 }
+
 
 /* ==========================================================================
    Base
@@ -308,8 +310,11 @@ nav {
 			padding: 0;
 			margin: 0;
 			background-color: transparent;
+			height: 65px;
+			width: 65px;
+			padding: 5px;
 			transform: none;
-			width: inherit;
+			position: fixed;
 			&:before, a {
 				transform: none;
 			}
@@ -320,13 +325,23 @@ nav {
 		.devbtn {
 			left: 10px;
 			&.right {
-				left: $panelSize + 5vw;
+				left: calc(100vw - 73px);
+				z-index: 10000;
+				background-color: $darkblue;
+				&:before {
+					content: "h";
+				}
 			}
 		}
 		.desbtn {
 			right: 10px;
 			&.left {
-				right: $panelSize + 5vw;
+				left: 0;
+				z-index: 10000;
+				background-color: $darkblue;
+				&:before {
+					content: "g";
+				}
 			}
 		}
 	}
@@ -357,6 +372,11 @@ Panels
 				transform: translateY(20vh);
 				@include transition(transform 0.1s linear);
 			}
+		}
+	}
+	@include break($mobile){
+		&.slideLeft, &.slideRight {
+			position: fixed;
 		}
 	}
 }
@@ -414,7 +434,7 @@ Projects
 		padding: 0 20px;
 	}
 	.project-desc {
-		margin: 30px 20px;
+		margin: 30px 0;
 		h3 {
 			padding: 5px 0;
 		}
@@ -442,13 +462,26 @@ About
 ========================================================================== */
 .aboutPanel {
 	display: flex;
-	padding: 50px 0;
-}
-.about {
-	align-self: center;
-	max-width: $mobile;
-	margin: 0 auto;
-	padding: 0 40px;
+
+	.about {
+		align-self: center;
+		max-width: $mobile;
+		margin: 0 auto;
+		padding: 0 40px;
+	}
+
+	@include break($mobile) {
+		.about {
+			padding: 0 30px;
+			margin-top: -5vh;
+			p {
+				font-size: 0.8em;
+			}
+			h2 {
+				font-size: 2em;
+			}
+		}
+	}
 }
 
 /* ==========================================================================
@@ -466,6 +499,7 @@ header {
 		max-width: $mobile;
 		margin: 0 auto;
 		padding-bottom: 50px;
+		margin-top: -20px;
 		h3, span {
 			display: inline-block;
 		}
@@ -495,11 +529,20 @@ header {
 				}
 			}
 			&.about-visible {
-				transform: translateY(40vh);
+				transform: translateY(35vh);
 				margin-left: 25px;
 				position: fixed;
 				z-index: 1001;
 				max-width: 294px;
+
+				@include break-max-height($mobile) {
+					transform: translateY(20vh);
+				}
+				@include break-max-height($mobile-landscape) {
+					transform: translateY(3vh);
+					height: 175px;
+					width: 175px;
+				}
 			}
 		}
 	}
@@ -541,6 +584,7 @@ header {
 			}
 		}
 	}
+
 }
 section.social {
 	clear: both;

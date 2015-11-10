@@ -55,6 +55,15 @@
 }
 
 /*
+@name: break-max-height
+@description: applies a max-height media query breakpoint.
+*/
+
+@mixin break-max-height($size) {
+  @media (max-height: $size) { @content; }
+}
+
+/*
 @name: clear
 @description: clears floats within element applied.
 */

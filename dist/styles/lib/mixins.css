@@ -22,6 +22,10 @@
 @description: applies a max-width media query breakpoint.
 */
 /*
+@name: break-max-height
+@description: applies a max-height media query breakpoint.
+*/
+/*
 @name: clear
 @description: clears floats within element applied.
 */

@@ -47,7 +47,7 @@
     "project1" : {
       "description" : "This is a single page application portfolio created to showcase the new skills i've acquired.",
       "image" : {
-        "image1" : "http://placehold.it/350x150"
+        "image1" : "dist/images/projects/portfolio-teaser.png"
       },
       "name" : "New Portfolio",
       "technology" : "ReactJS, HTML, JS, SASS, Firebase"
