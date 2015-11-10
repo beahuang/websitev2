@@ -344,9 +344,11 @@ nav .devbtn {
   nav .devbtn:before {
     margin: 10px 50px -10px 3px; }
   nav .devbtn.left {
-    left: -70vw; }
+    left: -80vw; }
   nav .devbtn.right {
-    left: 70vw; }
+    left: 80vw; }
+    nav .devbtn.right:before {
+      content: "h"; }
 nav .desbtn {
   margin-right: -75px;
   padding: 75px 50px 0px 10px;
@@ -354,9 +356,11 @@ nav .desbtn {
   nav .desbtn:before {
     margin: 0 35px 0 0; }
   nav .desbtn.left {
-    right: 70vw; }
+    right: 80vw; }
+    nav .desbtn.left:before {
+      content: "g"; }
   nav .desbtn.right {
-    right: -70vw; }
+    right: -80vw; }
 @media (max-width: 760px) {
   nav li.devbtn, nav li.desbtn {
     top: 10px;
@@ -382,16 +386,12 @@ nav .desbtn {
       left: calc(100vw - 73px);
       z-index: 10000;
       background-color: #207FE1; }
-      nav .devbtn.right:before {
-        content: "h"; }
   nav .desbtn {
     right: 10px; }
     nav .desbtn.left {
       left: 0;
       z-index: 10000;
-      background-color: #207FE1; }
-      nav .desbtn.left:before {
-        content: "g"; } }
+      background-color: #207FE1; } }
 
 /* ==========================================================================
 Panels
@@ -406,9 +406,9 @@ Panels
   -webkit-transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09);
   transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09); }
   #mainPanel.slideLeft {
-    left: -70vw; }
+    left: -80vw; }
   #mainPanel.slideRight {
-    left: 70vw; }
+    left: 80vw; }
   #mainPanel.slideDown {
     top: 80vh; }
     #mainPanel.slideDown header h1, #mainPanel.slideDown header h3 {
@@ -422,7 +422,7 @@ Panels
       position: fixed; } }
 
 .desPanel, .devPanel, .aboutPanel {
-  width: 70vw;
+  width: 80vw;
   height: 100%;
   top: 0;
   z-index: 1000;
@@ -432,13 +432,13 @@ Panels
   -webkit-transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09);
   transition: all 0.3s cubic-bezier(.59, .27, 0, 1.09); }
   .desPanel.left, .devPanel.left, .aboutPanel.left {
-    left: -70vw; }
+    left: -80vw; }
     .desPanel.left.visible, .devPanel.left.visible, .aboutPanel.left.visible {
       left: 0px;
       overflow-y: scroll;
       overflow-x: hidden; }
   .desPanel.right, .devPanel.right, .aboutPanel.right {
-    right: -70vw; }
+    right: -80vw; }
     .desPanel.right.visible, .devPanel.right.visible, .aboutPanel.right.visible {
       right: 0px;
       overflow-y: scroll;

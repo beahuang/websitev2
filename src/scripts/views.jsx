@@ -59,24 +59,29 @@ var App = React.createClass({
 var Nav = React.createClass({
 	getInitialState: function() {
 		return {
-			direction: ""
+			direction: "",
+			click: false
 		};
 	},
 	devOpen: function() {
 		if(this.state.direction == "right") {
 			this.setState({direction: ""});
+			this.setState({click: false});
 			this.props.reset();
 		} else {
 			this.setState({direction: "right"});
+			this.setState({click: true});
 			this.props.showLeft();
 		}
 	},
 	desOpen: function() {
 		if(this.state.direction == "left") {
 			this.setState({direction: ""});
+			this.setState({click: false});
 			this.props.reset();
 		} else {
 			this.setState({direction: "left"});
+			this.setState({click: true});
 			this.props.showRight();
 		}
 	},
@@ -84,8 +89,8 @@ var Nav = React.createClass({
 		return (
 			<nav>
 				<ul>
-					<li className={(this.state.direction) + " devbtn"} onClick={this.devOpen}><a>Code</a></li>
-					<li className={(this.state.direction) + " desbtn"} onClick={this.desOpen}><a>Design</a></li>
+					<li className={(this.state.direction) + " devbtn"} onClick={this.devOpen}><a>{this.state.click ? "Back": "Code"}</a></li>
+					<li className={(this.state.direction) + " desbtn"} onClick={this.desOpen}><a>{this.state.click ? "Back": "Design"}</a></li>
 				</ul>
 			</nav>
 		);
@@ -155,15 +160,6 @@ var Project = React.createClass({
 });
 
 var About = React.createClass({
-	// render: function() {
-	// 	return (
-	// 		<div className="about">
-	// 			<h2>{this.props.about}</h2>
-	// 			<img/>
-	// 			<p>I'm a web developer and a designer pursuing a degree in Computer Science and Interactive Media at Northeastern Unviersity but I'm currently studying abroad in Melbourne, Australia. I believe that any project can be 100x better with a good design. The best way to learn is by doing, so please drop me a message at huang.be@husky.neu.edu if you have a cool project you'd like to share!</p>
-	// 		</div>
-	// 	);
-	// }
 	render: function() {
 	  var createAbout = function(about, i) {
 		return (

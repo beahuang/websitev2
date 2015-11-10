@@ -25,7 +25,7 @@ $tablet: 960px;
 $mobile-landscape: 400px;
 
 // PanelSize
-$panelSize: 70vw;
+$panelSize: 80vw;
 $mobilePanelSize: 100vw;
 $aboutPanel: 80vh;
 
@@ -272,6 +272,9 @@ nav {
 		}
 		&.right {
 			left: $panelSize;
+			&:before {
+				content: "h";
+			}
 		}
 	}
 	.desbtn {
@@ -283,6 +286,9 @@ nav {
 		}
 		&.left {
 			right: $panelSize;
+			&:before {
+				content: "g";
+			}
 		}
 		&.right {
 			right: -$panelSize;
@@ -314,9 +320,6 @@ nav {
 				left: calc(100vw - 73px);
 				z-index: 10000;
 				background-color: $darkblue;
-				&:before {
-					content: "h";
-				}
 			}
 		}
 		.desbtn {
@@ -325,9 +328,6 @@ nav {
 				left: 0;
 				z-index: 10000;
 				background-color: $darkblue;
-				&:before {
-					content: "g";
-				}
 			}
 		}
 	}
