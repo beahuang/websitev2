@@ -569,6 +569,9 @@ header {
         max-width: 294px; }
         @media (max-height: 760px) {
           header .logoContainer .logo.about-visible {
+            -webkit-transform: translateY(40vh);
+                -ms-transform: translateY(40vh);
+                    transform: translateY(40vh);
             height: 200px;
             width: 200px; } }
         @media (max-height: 400px) {

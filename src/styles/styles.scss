@@ -529,6 +529,7 @@ header {
 				max-width: 294px;
 
 				@include break-max-height($mobile) {
+					transform: translateY(40vh);
 					height: 200px;
 					width: 200px;
 				}
