@@ -230,7 +230,7 @@ nav {
 		list-style: none;
 		padding: 5px;
 		position: absolute;
-		top: 33%;
+		top: 300px;
 		text-align: center;
 		color: white;
 		cursor: pointer;
@@ -529,7 +529,8 @@ header {
 				max-width: 294px;
 
 				@include break-max-height($mobile) {
-					transform: translateY(20vh);
+					height: 200px;
+					width: 200px;
 				}
 				@include break-max-height($mobile-landscape) {
 					transform: translateY(3vh);
