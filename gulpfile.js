@@ -27,7 +27,7 @@ gulp.task('bs-reload', function () {
 
 gulp.task('images', function(){
   gulp.src('src/images/**/*')
-    // .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist/images/'));
 });
 
@@ -38,7 +38,7 @@ gulp.task('styles', function(){
         console.log(error.message);
         this.emit('end');
     }}))
-    .pipe(sass())
+    .pipe(sass({ outputStyle: 'compressed' }))
     .pipe(autoprefixer('last 2 versions'))
     .pipe(gulp.dest('dist/styles/'))
     .pipe(browserSync.reload({stream:true}))
@@ -50,8 +50,8 @@ gulp.task('scripts', function(){
   var stream = bundle.bundle()
   return stream
     .pipe(source('main.js'))
-    // .pipe(rename({suffix: '.min'}))
-    // .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
     .pipe(gulp.dest('dist/scripts'))
     .pipe(browserSync.reload({stream:true}))
 });
