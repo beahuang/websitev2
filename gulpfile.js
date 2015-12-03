@@ -11,7 +11,9 @@ var gulp = require('gulp'),
     imagemin = require('gulp-imagemin'),
     cache = require('gulp-cache'),
     sass = require('gulp-sass'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+    del = require('del');
+
 
 gulp.task('browser-sync', function() {
   browserSync({
@@ -63,4 +65,6 @@ gulp.task('default', ['browser-sync'], function(){
   gulp.watch("*.html", ['bs-reload']);
 });
 
-gulp.task('build', ['images', 'styles', 'scripts']);
+gulp.task('build', ['images', 'styles', 'scripts'], function(){
+  del(['src', 'styles/lib']);
+});
