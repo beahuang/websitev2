@@ -65,6 +65,6 @@ gulp.task('default', ['browser-sync'], function(){
   gulp.watch("*.html", ['bs-reload']);
 });
 
-gulp.task('build', ['images', 'styles', 'scripts'], function(){
-  del(['src', 'styles/lib']);
+gulp.task('dist', ['images', 'styles', 'scripts'], function(){
+  del(['src', 'styles/lib', 'package.json','readme.txt','gulpfile.js']);
 });
