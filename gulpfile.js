@@ -66,5 +66,5 @@ gulp.task('default', ['browser-sync'], function(){
 });
 
 gulp.task('dist', ['images', 'styles'], function(){
-  del(['src', 'styles/lib', 'package.json','readme.txt','gulpfile.js']);
+  del(['src', 'styles/lib', 'package.json','readme.txt']);
 });
