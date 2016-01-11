@@ -13,6 +13,7 @@ $darkpink: #CE001E;
 $blue: #45CEF3;
 $midblue: #4C94D4;
 $darkblue: #207FE1;
+$darkblueopacity: rgba(32,127,225,0.85);
 $darkestblue: #1A5B9E;
 $gray : #455466;
 
@@ -298,6 +299,10 @@ nav {
 
 	// MOBILE STYLES
 	@include break($mobile) {
+		&.menubar li {
+			background-color: $darkblueopacity !important;
+			@include transition(background-color 0.3s linear);
+		}
 		li.devbtn, li.desbtn {
 			top: 10px;
 			padding: 0;
@@ -305,9 +310,10 @@ nav {
 			background-color: transparent;
 			height: 65px;
 			width: 65px;
-			padding: 5px;
+			padding: 8px;
 			transform: none;
 			position: fixed;
+			z-index: 3;
 			&:before, a {
 				transform: none;
 			}
@@ -327,7 +333,6 @@ nav {
 			right: 10px;
 			&.left {
 				left: 0;
-				z-index: 10000;
 				background-color: $darkblue;
 			}
 		}
@@ -372,7 +377,7 @@ Panels
 	width: $panelSize;
 	height: 100%;
 	top: 0;
-	z-index: 1000;
+	z-index: 2;
 	position: fixed;
 	background: url("../images/pink-bg.jpg");
 	background-size: 100px 80px;
@@ -470,7 +475,7 @@ About
 
 	@include break($mobile) {
 		.about {
-			padding: 0 30px;
+			padding: 0 60px;
 			margin-top: -5vh;
 			p {
 				font-size: 0.8em;

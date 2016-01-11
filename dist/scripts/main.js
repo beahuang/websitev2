@@ -66,7 +66,8 @@ var Nav = React.createClass({displayName: "Nav",
 	getInitialState: function() {
 		return {
 			direction: "",
-			click: false
+			click: false,
+			menuBar: false
 		};
 	},
 	devOpen: function() {
@@ -91,9 +92,22 @@ var Nav = React.createClass({displayName: "Nav",
 			this.props.showRight();
 		}
 	},
+	handleNavBar: function(e) {
+		if (window.scrollY > 75) {
+			this.setState({menuBar: true});
+		} else {
+			this.setState({menuBar: false});
+		}
+	},
+	componentDidMount: function() {
+	  window.addEventListener('scroll', this.handleNavBar);
+	},
+	componentWillUnmount: function() {
+	  window.removeEventListener('scroll', this.handleNavBar);
+	},
 	render: function() {
 		return (
-			React.createElement("nav", null, 
+			React.createElement("nav", {className: this.state.menuBar ? "menubar":""}, 
 				React.createElement("ul", null, 
 					React.createElement("li", {className: (this.state.direction) + " devbtn", onClick: this.devOpen}, React.createElement("a", null, this.state.click ? "Back": "Code")), 
 					React.createElement("li", {className: (this.state.direction) + " desbtn", onClick: this.desOpen}, React.createElement("a", null, this.state.click ? "Back": "Design"))
@@ -109,17 +123,14 @@ var Panel = React.createClass({displayName: "Panel",
 			visible: false
 		};
 	},
-
 	show: function() {
 		this.setState({ visible: true });
 		document.body.className = "panel-open";
 	},
-
 	hide: function() {
 		this.setState({ visible: false });
 		document.body.className = "";
 	},
-
 	returnTitle: function() {
 		if (this.props.id == "devPanel") {
 			return React.createElement("h2", {className: "title"}, "Code Projects")
@@ -127,7 +138,6 @@ var Panel = React.createClass({displayName: "Panel",
 			return React.createElement("h2", {className: "title"}, "Design Projects")
 		}
 	},
-
 	render: function() {
 		return (
 			React.createElement("div", {className: "panel"}, 

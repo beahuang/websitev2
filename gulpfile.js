@@ -52,8 +52,8 @@ gulp.task('scripts', function(){
   var stream = bundle.bundle()
   return stream
     .pipe(source('main.js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
+    // .pipe(rename({suffix: '.min'}))
+    // .pipe(uglify())
     .pipe(gulp.dest('dist/scripts'))
     .pipe(browserSync.reload({stream:true}))
 });
