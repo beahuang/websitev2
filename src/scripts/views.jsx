@@ -235,7 +235,7 @@ var Header = React.createClass({
 					<h3>Designer</h3>
 				</div>
 				<span className="resume">
-					<a href="dist/resume.pdf" className="btn">Resume</a>
+					<a href="/resume.pdf" className="btn">Resume</a>
 				</span>
 			</header>
 		);
